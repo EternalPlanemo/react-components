@@ -1,0 +1,94 @@
+:root {
+    --dd-padding:        12px;
+    --dd-border-radius:  0px;
+    --dd-border-color: darkslategray;
+    --dd-bg-color:     ghostwhite;
+    --dd-fg-color:     lightslategray;
+}
+
+.dropdown {
+    color: var(--dd-fg-color);
+    position: relative;
+    width: max-content;
+    box-sizing: border-box;
+    margin-left: auto;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .dropdown__body {
+        position: absolute;
+        top: calc(100% + 8px);
+        display: flex;
+        flex-direction: column;
+        gap: 4px 0px;
+        z-index: 0;
+        width: 180px;
+        border: 2px solid var(--dd-border-color);
+        border-radius: var(--dd-border-radius);
+        background-color: var(--dd-bg-color);
+        transform: translateY(-200%);
+        transition: transform 250ms ease-in-out;
+
+        .dropdown__link {
+            border: none;
+            text-align: left;
+        }
+
+        &[data-position="right"] {
+            left: 0px;
+            right: initial;
+        }
+
+        &[data-position="left"] {
+            left: initial;
+            right: 0px;
+        }
+    }
+
+    .dropdown__link {
+        padding: 0px;
+        border: 2px solid var(--dd-border-color);
+        border-radius: var(--dd-border-radius);
+        background-color: var(--dd-bg-color);
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+
+        transition: color 75ms ease-in-out, background-color 75ms ease-in-out;
+
+        &.is-active,
+        &:hover {
+            background-color: var(--dd-fg-color);
+            color: var(--dd-bg-color);
+        }
+
+        a,
+        .btn,
+        button {
+            padding: var(--dd-padding);
+        }
+    }
+
+    &.is-active {
+        .overlay {
+            display: block;
+        }
+
+        .dropdown__body {
+            transform: none;
+        }
+    }
+    
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--overlay-color);
+        z-index: -1;
+    }
+}
