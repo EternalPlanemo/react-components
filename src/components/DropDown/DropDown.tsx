@@ -4,7 +4,6 @@ import React, {
     cloneElement,
     useEffect,
     useRef,
-    useMemo,
 } from 'react';
 
 import './DropDownStyle.scss';
